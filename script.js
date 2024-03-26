@@ -42,7 +42,7 @@
             var index = i * 5 + j;
             if (index == 12) {
                 $('#cell'+index).addClass("qrCode");
-                $('#cell'+index).qrcode({ width: 50, height: 50, text: 'https://github.com/FabioSilva11' });
+                $('#cell'+index).qrcode({ width: 30, height: 30, text: 'https://github.com/FabioSilva11' });
             } else {
                 $('#cell'+index).html(numbers[j][i]);
             }
