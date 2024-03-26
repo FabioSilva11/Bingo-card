@@ -4,15 +4,44 @@
     <meta charset="utf-8">
     <title>bingo!! cards</title>
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="qrcode.min.js"></script>
-    <script src="script.js"></script>
+	<script src="qrcode.min.js"></script>
+	<script src="script.js"></script>
+    <style>
+        .empty {
+            font-weight: bold;
+        }
+
+        #container {
+            margin-top: 20px;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+        table td {
+            font-family: Sans-serif;
+            font-size: 8vw;
+            text-align: center;
+            border: 2px solid #ff2bf1;
+            background-color: white;
+            color: black;
+            cursor: pointer;
+            width: 10%;
+        }
+        td.empty {
+            background-color: #ff2bf1;
+            cursor: default;
+            color: white;
+        }
+    </style>
 </head>
 <body>    
-    <div id="container">
-        <div id="section">
-            <table>
+    <div id="container" class="container">
+        <div id="section" class="row">
+            <table class="table">
                 <tr>            
                     <td class="empty">B</td>
                     <td class="empty">I</td>
@@ -58,7 +87,7 @@
             </table>
         </div>      
     </div>  
-    <footer>
+    <footer class="container">
         Desenvolvido por Fábio Silva. 
         <a href="https://github.com/FabioSilva11">Link para o GitHub</a>
     </footer>
