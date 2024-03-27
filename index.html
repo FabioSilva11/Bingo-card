@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bingo!! Cards</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      .empty {
+        font-weight: bold;
+      }
+
+      #container {
+        margin-top: 20px;
+      }
+
+      footer {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      table td {
+        font-family: Sans-serif;
+        font-size: 4vw;
+        text-align: center;
+        border: 2px solid #ff2bf1;
+        background-color: white;
+        color: black;
+        cursor: pointer;
+        width: 20%;
+      }
+
+      table img {
+        width: 25px;
+        height: auto;
+      }
+
+      td.empty {
+        background-color: #ff2bf1;
+        cursor: default;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container" class="container">
+      <div id="section" class="row justify-content-center">
+        <table class="table table-bordered">
+          <tr>
+            <td class="empty">B</td>
+            <td class="empty">I</td>
+            <td class="empty">N</td>
+            <td class="empty">G</td>
+            <td class="empty">O</td>
+          </tr>
+          <tr>
+            <td id="cell0"></td>
+            <td id="cell1"></td>
+            <td id="cell2"></td>
+            <td id="cell3"></td>
+            <td id="cell4"></td>
+          </tr>
+          <tr>
+            <td id="cell5"></td>
+            <td id="cell6"></td>
+            <td id="cell7"></td>
+            <td id="cell8"></td>
+            <td id="cell9"></td>
+          </tr>
+          <tr>
+            <td id="cell10"></td>
+            <td id="cell11"></td>
+            <td id="cell12"></td>
+            <td id="cell13"></td>
+            <td id="cell14"></td>
+          </tr>
+          <tr>
+            <td id="cell15"></td>
+            <td id="cell16"></td>
+            <td id="cell17"></td>
+            <td id="cell18"></td>
+            <td id="cell19"></td>
+          </tr>
+          <tr>
+            <td id="cell20"></td>
+            <td id="cell21"></td>
+            <td id="cell22"></td>
+            <td id="cell23"></td>
+            <td id="cell24"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <footer class="container">
+      Desenvolvido por Fábio Silva.
+      <a href="https://github.com/FabioSilva11">Link para o GitHub</a>
+    </footer>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        init();
+      });
+
+      function init() {
+        addImageFromRoot();
+        var numbers = generateCard();
+        fillCard(numbers);
+      }
+
+      function generateCard() {
+        var cardNumbers = [];
+        for (var i = 0; i < 5; i++) {
+          var columnNumbers = [];
+          var numbers = [];
+          for (var j = 0; j < 15; j++) {
+            numbers.push(i * 15 + j + 1);
+          }
+          for (var k = 0; k < 5; k++) {
+            var index = Math.floor(Math.random() * numbers.length);
+            var number = numbers[index];
+            columnNumbers.push(number);
+            numbers.splice(index, 1);
+          }
+          cardNumbers.push(columnNumbers);
+        }
+        return cardNumbers;
+      }
+
+      function fillCard(numbers) {
+        for (var i = 0; i < 5; i++) {
+          for (var j = 0; j < 5; j++) {
+            var index = i * 5 + j;
+            if (index !== 12) {
+              var cell = document.getElementById("cell" + index);
+              cell.textContent = numbers[j][i];
+            }
+          }
+        }
+      }
+
+      function addImageFromRoot() {
+        var image = document.createElement("img");
+        image.src = "Untitled.png";
+        document.getElementById("cell12").appendChild(image);
+      }
+
+      document.querySelectorAll("td").forEach(function (cell) {
+        cell.addEventListener("click", function () {
+          if (
+            !this.classList.contains("empty") &&
+            !this.classList.contains("qrCode")
+          ) {
+            var toggle = this.style;
+            toggle.backgroundColor = toggle.backgroundColor ? "" : "#90ff2b";
+            toggle.color = toggle.color ? "" : "white";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
